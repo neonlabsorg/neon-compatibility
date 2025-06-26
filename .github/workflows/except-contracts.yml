@@ -22,7 +22,7 @@ env:
 
 jobs:
   python:
-    runs-on: ubuntu-latest
+    runs-on: ["gha-runner-scale-set"]
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v2
@@ -63,7 +63,7 @@ jobs:
           folder-name: report/allure-results
 
   node:
-    runs-on: ubuntu-latest
+    runs-on: ["gha-runner-scale-set"]
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v2
@@ -106,7 +106,7 @@ jobs:
           folder-name: report/allure-results
 
   allure:
-    runs-on: ubuntu-latest
+    runs-on: ["gha-runner-scale-set"]
     timeout-minutes: 15
     if: always()
     needs:
@@ -148,7 +148,7 @@ jobs:
           PUBLISH_DIR: allure-history
 
   notification:
-    runs-on: ubuntu-latest
+    runs-on: ["gha-runner-scale-set"]
     if: always()
     needs: allure
     env:

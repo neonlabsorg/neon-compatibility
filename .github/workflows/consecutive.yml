@@ -40,7 +40,7 @@ env:
 
 jobs:
   prepare-env:
-    runs-on: ubuntu-20.04
+    runs-on: ["gha-runner-scale-set"]
     if: always()
     steps:
       - name: Setup env
@@ -74,7 +74,7 @@ jobs:
       runner: ${{ steps.setup.outputs.runner }}
 
   python:
-    runs-on: ubuntu-20.04
+    runs-on: ["gha-runner-scale-set"]
     if: always()
     needs:
       - prepare-env
@@ -171,7 +171,7 @@ jobs:
           rm -rf "${{ github.workspace }}"
 
   node:
-    runs-on: ubuntu-20.04
+    runs-on: ["gha-runner-scale-set"]
     timeout-minutes: 30
     needs:
       - prepare-env
@@ -220,7 +220,7 @@ jobs:
           folder-name: report/allure-results
 
   allure:
-    runs-on: ubuntu-20.04
+    runs-on: ["gha-runner-scale-set"]
     timeout-minutes: 60
     if: always()
     needs:
@@ -282,7 +282,7 @@ jobs:
       subdir: ${{ env.ALLURE_SUBDIR }}
 
   notification:
-    runs-on: ubuntu-20.04
+    runs-on: ["gha-runner-scale-set"]
     if: always()
     needs:
       - allure
